@@ -26,7 +26,7 @@ for i in ${trazo[@]}; do
    echo float $(echo $i | grep -o "id=\"[^=]*\"" | cut -d= -f2 | tr -d '"') "[]" = "{" $(./nodes.exe ${firstNodes[@]} ${otherNodes[@]}) "} ;" >> nodes.cpp
 done
 
-grep -v "float \[\]" nodes.cpp > tmp 
+grep -v "float \[\]" nodes.cpp | sed 's/_x3C_//g' | sed 's/_x3E_//g' > tmp 
 
 mv tmp nodes.cpp
 

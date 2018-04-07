@@ -17,7 +17,12 @@ int main(int argc, char* argv[]) {
 		nodos[i] += nodos[i - 2];
 	}
 //////////////////////////////////////////
+	printf ("%i,",argc - 1);
+
+
 	for ( i = 0 ; i < (argc - 1) ; i++) {
+
+
 		if (i == (argc - 2)) {
 			printf ("%.1f",nodos[i]);
 		} else {
