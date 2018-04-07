@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f nodes.cpp ] ; then
+	rm nodes.cpp
+fi
+
 clear
 trazo=( $(cat $1 | tr -d '\r' | tr -d  '\n' | tr -d '\t' | tr -d ' ' | grep -o "<path[^<>]*/>") )
 #echo ${#array[@]} # numero de elementos en array
@@ -21,4 +25,9 @@ for i in ${trazo[@]}; do
 	#./a.out ${firstNodes[@]} ${otherNodes[@]}
    echo float $(echo $i | grep -o "id=\"[^=]*\"" | cut -d= -f2 | tr -d '"') "[]" = "{" $(./nodes.exe ${firstNodes[@]} ${otherNodes[@]}) "} ;" >> nodes.cpp
 done
+
+grep -v "float \[\]" nodes.cpp > tmp 
+
+mv tmp nodes.cpp
+
 cat nodes.cpp
